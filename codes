@@ -1,0 +1,23 @@
+classes_scores = []      # classes_scores = [93, 93, 93, 92, 77, 93, 86, 78, 81, 91, 90, 90, 87, 87, 100]
+classes_credit = []      # classes_credit = [2, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2, 2, 1]
+
+
+#绩点计算公式：60分及以上 绩点+1 ，往后每1分绩点加0.1 ，所以100分绩点是5
+def calculate_every_GPA(score, credit):
+    gpa = 0
+    if score >= 60:
+        gpa += 1
+        gpa += (score-60)*0.1
+        gpa = gpa * credit
+        return gpa
+    else:
+        return 0
+
+
+classes = [classes_scores, classes_credit]
+total_gpa = 0
+for i in range(len(classes[0])):
+    total_gpa += calculate_every_GPA(classes[0][i], classes[1][i])
+
+total_gpa /= sum(classes[1])
+print(total_gpa)
